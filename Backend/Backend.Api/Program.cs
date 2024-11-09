@@ -1,5 +1,6 @@
 using Backend.Application;
 using Backend.Infrastructure.Data.InMemoryContext;
+using Backend.Infrastructure.Data.PostgresContext;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,7 @@ builder.Configuration.AddEnvironmentVariables();
 
 string connectionString = Env.GetString("POSTGRES_SQL_CONNECTION")?? throw new ArgumentNullException("POSTGRES_SQL_CONNECTION environment variable is not set.");
 
-builder.Services.AddDbContext<DbContext>(options =>
+builder.Services.AddDbContext<DbContext, PostgresContext>(options =>
     options.UseNpgsql(connectionString,
             b => b.MigrationsAssembly("Backend.Api"))
         .EnableSensitiveDataLogging()
