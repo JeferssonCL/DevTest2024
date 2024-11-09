@@ -1,7 +1,8 @@
 using Backend.Domain.Concretes;
 using Backend.Infrastructure.Data.InMemoryContext;
 using Backend.Infrastructure.Repositories.Bases;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Repositories.Concretes;
 
-public class PoolRepository(InMemoryDbContext context) : BaseRepositoryInMemoryContext<Pool>(context);
+public class PollRepository(DbContext context) : BaseRepositoryDbContext<Poll>(context);
