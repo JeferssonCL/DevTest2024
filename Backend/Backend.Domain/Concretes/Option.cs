@@ -6,5 +6,7 @@ public class Option : BaseEntity
 {
     public Guid PoolId { get; set; }
     public string Name { get; set; }
-    public Pool Pool { get; set; }
+    public Poll Poll { get; set; }
+    public ICollection<Vote> Votes { get; set; }
+
 }
