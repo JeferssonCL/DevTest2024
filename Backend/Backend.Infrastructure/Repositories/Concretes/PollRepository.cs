@@ -1,5 +1,4 @@
 using Backend.Domain.Concretes;
-using Backend.Infrastructure.Data.InMemoryContext;
 using Backend.Infrastructure.Repositories.Bases;
 using Microsoft.EntityFrameworkCore;
 

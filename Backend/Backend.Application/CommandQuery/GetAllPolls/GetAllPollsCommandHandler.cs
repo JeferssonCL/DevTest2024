@@ -13,7 +13,6 @@ public class GetAllPollsCommandHandler(IRepository<Poll> poolRepository,
     {
         var poolDtos = new List<PollDto>();
         var pools = poolRepository.GetAll().Result.ToList();
-        Console.WriteLine(pools.Count);
 
         foreach (var pool in pools)
         {
