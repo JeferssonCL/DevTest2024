@@ -15,9 +15,9 @@ public static class ApplicationConfiguration
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
             typeof(ApplicationConfiguration).Assembly));
 
-        services.AddScoped<IValidator<CreatePoolDto>, CreatePoolValidation>();
+        services.AddScoped<IValidator<CreatePollDto>, CreatePoolValidation>();
         services.AddScoped<IValidator<CreateVoteDto>, CreateVoteValidation>();
-        services.AddScoped<IRepository<Pool>, PoolRepository>();
+        services.AddScoped<IRepository<Poll>, PollRepository>();
         services.AddScoped<IRepository<Vote>, VoteRepository>();
         services.AddScoped<IRepository<Option>, OptionRepository>();
     }

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Backend.Application.CommandQuery.CreateVote;
 
-public class CreateVoteCommandHandler(IRepository<Pool> poolRepository,
+public class CreateVoteCommandHandler(IRepository<Poll> poolRepository,
     IRepository<Vote> voteRepository,
     IRepository<Option> optionRepository) : IRequestHandler<CreateVoteCommand, VoteDto>
 {

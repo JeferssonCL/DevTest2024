@@ -7,24 +7,26 @@ using MediatR;
 namespace Backend.Application.CommandQuery.CreatePoolCommands;
 
 public class CreatePoolCommandHandler(
-    IValidator<CreatePoolDto> validator,
-    IRepository<Pool> poolRepository,
+    IValidator<CreatePollDto> validator,
+    IRepository<Poll> poolRepository,
     IRepository<Vote> voteRepository,
-    IRepository<Option> optionRepository) : IRequestHandler<CreatePoolCommand, PoolDto>
+    IRepository<Option> optionRepository) : IRequestHandler<CreatePoolCommand, PollDto>
 {
-    public async Task<PoolDto> Handle(CreatePoolCommand request, CancellationToken cancellationToken)
+    public async Task<PollDto> Handle(CreatePoolCommand request, CancellationToken cancellationToken)
     {
-        var createPoolDto = request.PoolDto;
+        var createPoolDto = request.PollDto;
         var response = await validator.ValidateAsync(createPoolDto, cancellationToken);
         if (!response.IsValid) 
             throw new ValidationException(response.Errors);
         
         var options = new List<OptionDto>();
 
-        var pool = new Pool
+        var pool = new Poll
         {
             Name = createPoolDto.Name
         };
+        
+        await poolRepository.AddAsync(pool);
 
         foreach (var option in createPoolDto.Options)
         {
@@ -41,9 +43,7 @@ public class CreatePoolCommandHandler(
                 votes = count
             });
         }
-        
-        await poolRepository.AddAsync(pool);
-        return new PoolDto
+        return new PollDto
         {
             Id = pool.Id,
             Name = pool.Name,

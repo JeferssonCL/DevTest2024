@@ -3,15 +3,15 @@ using Backend.Domain.Concretes;
 using Backend.Infrastructure.Repositories.Interfaces;
 using MediatR;
 
-namespace Backend.Application.CommandQuery.GetAllPools;
+namespace Backend.Application.CommandQuery.GetAllPolls;
 
-public class GetAllPoolsCommandHandler(IRepository<Pool> poolRepository,
+public class GetAllPollsCommandHandler(IRepository<Poll> poolRepository,
     IRepository<Vote> voteRepository,
-    IRepository<Option> optionRepository) : IRequestHandler<GetAllPoolsCommand, List<PoolDto>>
+    IRepository<Option> optionRepository) : IRequestHandler<GetAllPollsCommand, List<PollDto>>
 {
-    public Task<List<PoolDto>> Handle(GetAllPoolsCommand request, CancellationToken cancellationToken)
+    public Task<List<PollDto>> Handle(GetAllPollsCommand request, CancellationToken cancellationToken)
     {
-        var poolDtos = new List<PoolDto>();
+        var poolDtos = new List<PollDto>();
         var pools = poolRepository.GetAll().Result.ToList();
         Console.WriteLine(pools.Count);
 
@@ -29,7 +29,7 @@ public class GetAllPoolsCommandHandler(IRepository<Pool> poolRepository,
                     votes = count
                 });
             }
-            poolDtos.Add(new PoolDto
+            poolDtos.Add(new PollDto
             {
                 Id = pool.Id,
                 Name = pool.Name,

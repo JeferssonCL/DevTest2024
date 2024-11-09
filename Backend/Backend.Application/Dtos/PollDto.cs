@@ -1,6 +1,6 @@
 namespace Backend.Application.Dtos;
 
-public class PoolDto
+public class PollDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

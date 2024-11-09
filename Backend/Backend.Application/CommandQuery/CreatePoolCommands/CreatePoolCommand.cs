@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Backend.Application.CommandQuery.CreatePoolCommands;
 
-public class CreatePoolCommand(CreatePoolDto createPoolDto) : IRequest<PoolDto>
+public class CreatePoolCommand(CreatePollDto createPollDto) : IRequest<PollDto>
 {
-    public CreatePoolDto PoolDto { get; set; } = createPoolDto;
+    public CreatePollDto PollDto { get; set; } = createPollDto;
 }

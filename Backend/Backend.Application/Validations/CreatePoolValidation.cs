@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Backend.Application.Validations;
 
-public class CreatePoolValidation : AbstractValidator<CreatePoolDto>
+public class CreatePoolValidation : AbstractValidator<CreatePollDto>
 {
     public CreatePoolValidation()
     {
